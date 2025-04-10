@@ -2,11 +2,12 @@
 import sys
 import os
 
-# Añadir el directorio actual al path de Python
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Ensure the root directory is in the path so imports work correctly
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# or for the current directory:
+# sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from scraper.livescore_scraper import obtener_marcadores
-from config import Config
 
 # Ejecutar el scraper
 print("Iniciando prueba del scraper...")
