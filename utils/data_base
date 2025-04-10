@@ -1,0 +1,24 @@
+CREATE TABLE regions (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+CREATE TABLE competitions (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    region_id INTEGER NOT NULL REFERENCES regions(id)
+);
+CREATE TABLE teams (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+CREATE TABLE matches (
+    id SERIAL PRIMARY KEY,
+    competition_id INTEGER NOT NULL REFERENCES competitions(id),
+    team_home_id INTEGER NOT NULL REFERENCES teams(id),
+    team_away_id INTEGER NOT NULL REFERENCES teams(id),
+    score_home INTEGER,
+    score_away INTEGER,
+    status VARCHAR(20) NOT NULL, -- Ej: 'Final', '48'', etc.
+    match_time TIME,
+    match_date DATE DEFAULT CURRENT_DATE
+);
